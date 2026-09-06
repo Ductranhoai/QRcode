@@ -309,14 +309,26 @@ function typeMessage() {
 
   // Hàm làm mờ dần và chuyển sang dòng kế (hoặc lặp lại nếu hết)
   function fadeToNext() {
-    messageEl.style.transition = 'opacity 0.7s';
-    messageEl.style.opacity = '0';
-    setTimeout(function() {
+    function clear() {
       messageEl.style.transition = '';
       messageEl.style.opacity = '';
       partIndex = (partIndex + 1) % parts.length;
       typePart();
-    }, 600);
+    }
+
+    if (messageEl.animate) {
+      messageEl.animate(
+        [{ opacity: 1 }, { opacity: 0 }],
+        { duration: 700, easing: 'ease-in-out' }
+      ).onfinish = clear;
+    } else {
+      let op = 1;
+      const iv = setInterval(() => {
+        op -= 0.07;
+        messageEl.style.opacity = String(Math.max(op, 0));
+        if (op <= 0) { clearInterval(iv); clear(); }
+      }, 50);
+    }
   }
 
   function typePart() {
