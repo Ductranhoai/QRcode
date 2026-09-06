@@ -264,7 +264,7 @@ function initMatrix() {
     ctx.fillStyle = '#FFAEC9';
     ctx.font = fontSize + 'px monospace';
     for (let i = 0; i < drops.length; i++) {
-      ctx.fillText('Q', i * fontSize, drops[i] * fontSize);
+      ctx.fillText('🌹', i * fontSize, drops[i] * fontSize);
       if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
         drops[i] = 0;
       }
@@ -281,7 +281,7 @@ function initMatrix() {
 }
 
 // TYPEWRITER MESSAGE
-const fullMessage = 'Anh nghe tụi nó nói\nKhông ai xinh hơn tụi nó\nAnh không thích đôi co\nNên mang chúng tới gặp em';
+const fullMessage = 'Anh nghe tụi nó nói, không ai xinh hơn tụi nó\nAnh không thích đôi co nên đã mang chúng tới gặp em 🌹';
 const messageEl = document.getElementById('message');
 
 // TẠO HẠT LẤP LÁNH NGẪU NHIÊN
@@ -331,7 +331,7 @@ function typeMessage() {
         clearInterval(typeInterval);
         setTimeout(fadeToNext, 1600);
       }
-    }, 160);
+    }, 105);
   }
 
   typePart();
